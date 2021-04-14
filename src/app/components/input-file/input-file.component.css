@@ -1,0 +1,11 @@
+.avataruser{
+    display: none;
+}
+.img-avatarUser{
+    object-fit: cover;
+    position: absolute;
+    transform: translate(-50%, 0);
+}
+.img-avatarUser:hover{
+    cursor: pointer;
+}

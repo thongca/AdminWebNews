@@ -1,0 +1,124 @@
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
+                            <button type="button" (click)="showModal()" class="btn btn-outline-primary">Thêm
+                                mới</button>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Sort</th>
+                                <th>ImgUrlMaster</th>
+                                <th>ImgUrlDetail</th>
+                                <th>Select</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of compnewss">
+                                <td>
+                                    {{item.Title}}
+                                </td>
+                                <td>
+                                    {{item.SortContent}}
+                                </td>
+
+                                <td>
+                                    {{item.ImgUrlMaster}}
+                                </td>
+                                <td>
+                                    {{item.ImgUrlDetail}}
+                                </td>
+                                <td class="text-center">
+                                    <span title="Sửa" (click)="SelectIdEditModel(item.Id)"><i
+                                            class="iconedit-fontsize fa fa-pencil-square-o"
+                                            aria-hidden="true"></i></span>
+                                    <a title="Xóa" (click)="DeleteById(item.Id)">Xóa</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!--/.col-->
+    </div>
+    <!--/.row-->
+</div>
+
+
+<div bsModal #myModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Modal title</h4>
+                <button type="button" class="close" (click)="myModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="Title">Tiêu đề</label>
+                            <input type="text" name="Title" [(ngModel)]="model.Title" class="form-control" id="Title"
+                                placeholder="Enter your name">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="name">Img</label>
+                            <input #file multiple type="file" (change)="onFileChange($event)" name="imgUrl"
+                                class="form-control" id="name">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="name">Loại bài viết</label>
+                            <input type="number" class="form-control" id="TypeNews" name="TypeNews"
+                                [(ngModel)]="model.TypeNews" placeholder="2 = bài viết, 3 = videos">
+                        </div>
+                    </div>
+                </div>
+                <!--/.row-->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="ccnumber">Nội dung ngắn</label>
+                            <quill-editor [(ngModel)]="model.SortContent" class="content-editor" [placeholder]="''">
+                            </quill-editor>
+                        </div>
+                    </div>
+                </div>
+                <!--/.row-->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="ccnumber">Nội dung dài</label>
+                            <quill-editor [(ngModel)]="model.LongContent" class="content-editor" [placeholder]="''">
+                            </quill-editor>
+                        </div>
+                    </div>
+                </div>
+                <!--/.row-->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="myModal.hide()">Close</button>
+                <button type="button" class="btn btn-primary" (click)="r2_AddData()">Save changes</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
