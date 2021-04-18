@@ -1,1 +1,133 @@
-<p>sanpham works!</p>
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
+                            <button type="button" (click)="showModal()" class="btn btn-outline-primary">Thêm
+                                mới</button>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th>ProductName</th>
+                                <th>Sort</th>
+                                <th>ImgFullHd</th>
+                                <th>ImgIntro</th>
+                                <th>ImgTrending</th>
+                                <th>ImgBanner</th>
+                                <th>Select</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of compProducts">
+                                <td>
+                                    {{item.ProductName}}
+                                </td>
+                                <td>
+                                    {{item.SortDetail}}
+                                </td>
+
+                                <td>
+                                    {{item.ImgFullHd}}
+                                </td>
+                                <td>
+                                    {{item.ImgIntro}}
+                                </td>
+                                <td>
+                                    {{item.ImgTrending}}
+                                </td>
+                                <td>
+                                    {{item.ImgBanner}}
+                                </td>
+                                <td class="text-center">
+                                    <span title="Sửa" (click)="SelectIdEditModel(item.Id)"><i
+                                            class="iconedit-fontsize fa fa-pencil-square-o"
+                                            aria-hidden="true"></i></span>
+                                    <a title="Xóa" (click)="DeleteById(item.Id)">Xóa</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                {{model | json}}
+            </div>
+        </div>
+        <!--/.col-->
+    </div>
+    <!--/.row-->
+</div>
+
+
+<div bsModal #myModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Modal title</h4>
+                <button type="button" class="close" (click)="myModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="Title">Tên sản phẩm</label>
+                            <input type="text" name="ProductName" [(ngModel)]="model.ProductName" class="form-control" id="Title"
+                                placeholder="Enter your name">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="name">Img</label>
+                            <input #file multiple type="file" placeholder=" lớn hơn 3 ảnh" (change)="onFileChange($event)" name="imgUrl"
+                                class="form-control" id="name">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="name">Loại sản phẩm</label>
+                            <input type="number" class="form-control" id="ProductType" name="ProductType"
+                                [(ngModel)]="model.ProductType" placeholder="1 = Rượu, 2 = Đồ Ngâm, 3 = Trưng Bày">
+                        </div>
+                    </div>
+                </div>
+                <!--/.row-->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="ccnumber">Nội dung ngắn</label>
+                            <quill-editor [(ngModel)]="model.SortDetail" name="SortDetail" class="content-editor" [placeholder]="''">
+                            </quill-editor>
+                        </div>
+                    </div>
+                </div>
+                <!--/.row-->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="ccnumber">Nội dung dài</label>
+                            <quill-editor [(ngModel)]="model.LongDetail" class="content-editor" [placeholder]="''">
+                            </quill-editor>
+                        </div>
+                    </div>
+                </div>
+                <!--/.row-->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="myModal.hide()">Close</button>
+                <button type="button" class="btn btn-primary" (click)="r2_AddData()">Save changes</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

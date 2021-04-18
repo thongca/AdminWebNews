@@ -16,9 +16,8 @@ export class ApiService {
   /** GET: lấy thông tin danh sách dữ liệu  */
   r1_Get_List_Data(url: string): Observable<any> {
     const options: any = {
-      ContentType: 'application/json; charset=utf-8',
       headers: new HttpHeaders({
-        Authorization: this.getToken()
+        ContentType: 'application/json; charset=utf-8',
       })
     };
     return this.http.get<any>(this.baseUrl + url, options);

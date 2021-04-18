@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  urlApi: 'http://localhost:49396/'
+  urlApi: 'http://ruoutu.com/'
 };

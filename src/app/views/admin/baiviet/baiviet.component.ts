@@ -43,6 +43,7 @@ export class BaivietComponent implements OnInit {
     this.files = target.files;
   }
   r2_AddData(): void {
+    console.log(this.model);
     if (this.model.Id === 0) {
       this.apiFile.r2_addFileModel(this.files, this.model, 'api/AdminNews/r2_CreateNews').subscribe(res => {
         this.file.nativeElement.value = '';
